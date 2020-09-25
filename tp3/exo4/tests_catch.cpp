@@ -52,3 +52,14 @@ TEST_CASE("Statisticien_Initialisation") {
   Statisticien p;
   REQUIRE_FALSE(p.aCalcule());
 }
+
+TEST_CASE("Satisticien_Calculs") {
+  const int DEMANDE = 10, SOMME = DEMANDE*(DEMANDE+1)/2;
+  const float MOYENNE = SOMME/DEMANDE;
+  Statisticien s;
+  Producteur p;
+
+  p.produire(DEMANDE, "test01.txt");
+  s.acquerir("test01.txt");
+  REQUIRE(s.aCalcule() == true);
+}

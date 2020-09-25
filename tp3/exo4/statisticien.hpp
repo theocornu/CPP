@@ -9,7 +9,7 @@ class Statisticien {
     public :
         Statisticien();
         bool aCalcule();
-        void acquerir(std::string filename);
+        bool acquerir(std::string filename);
 };
 
 #endif
