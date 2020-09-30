@@ -1,6 +1,7 @@
 #include <iostream>
 #include "rectangle.hpp"
 #include "cercle.hpp"
+#include "liste.hpp"
 
 int main(int, char**)
 {
@@ -13,5 +14,6 @@ int main(int, char**)
     std::cout << cerc.toString() << std::endl;
     std::cout << cerc2.toString() << std::endl;*/
 
+    Liste l;
     
 }
