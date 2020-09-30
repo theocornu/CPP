@@ -9,7 +9,7 @@ class Statisticien {
     public :
         Statisticien();
         bool aCalcule();
-        bool acquerir(std::string filename);
+        bool acquerir(std::string filename, int& somme, float& moyenne);
 };
 
 #endif

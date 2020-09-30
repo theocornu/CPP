@@ -4,11 +4,22 @@
 #include <iostream>
 
 class Producteur {
-    int travail;
+    protected :
+        int travail;
 
     public : 
         Producteur();
-        int getTravail();
+        virtual int getTravail();
+        virtual bool produire(int n, std::string filename) = 0;
+};
+
+class ProducteurPremiersEntiers : public Producteur {
+    public :
+        bool produire(int n, std::string filename);
+};
+
+class ProducteurAleatoire : public Producteur {
+    public :
         bool produire(int n, std::string filename);
 };
 
