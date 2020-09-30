@@ -1,3 +1,4 @@
+#include <iostream>
 #include "liste.hpp"
 #include "rectangle.hpp"
 #include "cercle.hpp"
@@ -14,13 +15,15 @@ int Liste::getCompteur()
     return compteur;
 }
 
-void ajouterCercle(Cercle * c)
+void Liste::ajouterCercle(Cercle * c)
 {
+    std::cout << c->ordre << std::endl;
     nb_c++;
 }
 
-void ajouterRectangle(Rectangle * r)
+void Liste::ajouterRectangle(Rectangle * r)
 {
+    std::cout << r->ordre << std::endl;
     nb_r++;
 }
 

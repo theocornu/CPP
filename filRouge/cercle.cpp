@@ -2,7 +2,7 @@
 #include <sstream>
 #include "cercle.hpp"
 
-Cercle::Cercle(int x, int y, int w, int h) : x(x), y(y), w(w), h(h)
+Cercle::Cercle(int x, int y, int w, int h) : x(x), y(y), w(w), h(h), ordre(-1)
 {
 
 } 
