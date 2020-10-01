@@ -13,7 +13,17 @@ int Point::getX()
     return x;
 }
 
+void Point::setX(int x_)
+{
+    x = x_;
+}
+
 int Point::getY()
 {
     return y;
+}
+
+void Point::setY(int y_)
+{
+    y = y_;
 }
