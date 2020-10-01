@@ -1,4 +1,5 @@
 #pragma once
+#include "point.hpp"
 
 enum class COULEURS {
   ROUGE, BLEU, JAUNE, VERT

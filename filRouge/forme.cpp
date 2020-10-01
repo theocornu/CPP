@@ -1,5 +1,4 @@
 #include "forme.hpp"
-#include "point.hpp"
 
 int Forme::nbFormes = 0;
 
