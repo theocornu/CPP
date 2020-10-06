@@ -79,3 +79,20 @@ TEST_CASE("Instanciation3", "[Forme]") {
   REQUIRE_FALSE (f2.getCouleur() == COULEURS::BLEU);
   REQUIRE_FALSE (f2.getCouleur() == COULEURS::ROUGE);
 }
+
+TEST_CASE("Cercle", "[Cercle]") {
+   int compteur = Forme::prochainId();
+   Cercle c1;
+   Cercle c2(...); 
+   
+   REQUIRE(c1.toString() == ".....");
+   REQUIRE(c2.toString() == ".....");
+
+   c2.setRayon(...);
+   REQUIRE(c2.getRayon()   == "..."  );
+   REQUIRE(c2.toString()   == ".....");
+   REQUIRE(c2.getLargeur() == ".....");
+   REQUIRE(c2.getHauteur() == ".....");  
+
+   REQUIRE(Forme::prochainId() == (compteur+2) ); 
+}

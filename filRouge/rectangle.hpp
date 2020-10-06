@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
+#include "forme.hpp"
 
-class Rectangle
+class Rectangle : public Forme
 {
     int x; // coordonnée x
     int y; // coordonnée y
