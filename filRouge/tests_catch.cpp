@@ -78,6 +78,4 @@ TEST_CASE("Instanciation3", "[Forme]") {
   REQUIRE (f2.getCouleur() == COULEURS::JAUNE);
   REQUIRE_FALSE (f2.getCouleur() == COULEURS::BLEU);
   REQUIRE_FALSE (f2.getCouleur() == COULEURS::ROUGE);
-
-  int i;
 }
