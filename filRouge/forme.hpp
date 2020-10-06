@@ -9,19 +9,23 @@ class Point;
 
 class Forme
 {
-    Point point;
-    COULEURS couleur;
-    int w;
-    int h;
-    static int nbFormes;
+  int id;
+  Point point;
+  COULEURS couleur;
+  int w;
+  int h;
+  static int nbFormes;
 
     public :
         Forme();
         Forme(Point point, COULEURS couleur = COULEURS::BLEU, int w = 1, int h = 1);
-        Point getPoint();
+        Point& getPoint();
         void setX(int x);
         void setY(int y);
         COULEURS getCouleur();
+        int getId();
         void setCouleur(COULEURS couleur_);
         static int getCompteur();
+        static int prochainId();
+        ~Forme();
 };

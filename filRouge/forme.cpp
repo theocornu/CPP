@@ -6,12 +6,12 @@ Forme::Forme() : Forme(Point::ORIGINE, COULEURS::BLEU, 1, 1)
 {}
 
 Forme::Forme(Point point, COULEURS couleur, int w, int h) :
-    point(point), couleur(couleur), w(w), h(h)
+    id(Forme::prochainId()), point(point), couleur(couleur), w(w), h(h)
 {
     nbFormes++;
 }
 
-Point Forme::getPoint()
+Point& Forme::getPoint()
 {
     return point;
 }
@@ -31,6 +31,11 @@ COULEURS Forme::getCouleur()
     return couleur;
 }
 
+int Forme::getId()
+{
+    return id;
+}
+
 void Forme::setCouleur(COULEURS couleur_)
 {
     couleur = couleur_;
@@ -39,4 +44,14 @@ void Forme::setCouleur(COULEURS couleur_)
 int Forme::getCompteur()
 {
     return nbFormes;
+}
+
+int Forme::prochainId()
+{
+    return nbFormes;
+}
+
+Forme::~Forme()
+{
+    nbFormes--;
 }

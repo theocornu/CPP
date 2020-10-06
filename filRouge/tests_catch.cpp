@@ -27,6 +27,20 @@ TEST_CASE("Origine", "[Point]") {
   REQUIRE(Point::ORIGINE.getY() == 0);
 }
 
+
+TEST_CASE("Compteur", "[Forme]") {
+   // Pour être correct, ce test doit etre le premier sur Forme
+   REQUIRE(0 == Forme::prochainId());
+   Forme f1;
+   REQUIRE(0 == f1.getId());
+   REQUIRE(1 ==  Forme::prochainId());  
+   // Verification que la valeur n'est pas decrementee accidentellement.
+   Forme *p = new Forme;
+   REQUIRE(1 == p->getId());
+   delete p;
+   REQUIRE(2 == Forme::prochainId());
+}
+
 TEST_CASE("Instanciation1", "[Forme]") {
   Forme f1;
   REQUIRE(f1.getPoint().getX() == 0);
