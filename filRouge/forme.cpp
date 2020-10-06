@@ -1,6 +1,7 @@
 #include "forme.hpp"
 
 int Forme::nbFormes = 0;
+int Forme::nbId = 0;
 
 Forme::Forme() : Forme(Point::ORIGINE, COULEURS::BLEU, 1, 1)
 {}
@@ -9,6 +10,7 @@ Forme::Forme(Point point, COULEURS couleur, int w, int h) :
     id(Forme::prochainId()), point(point), couleur(couleur), w(w), h(h)
 {
     nbFormes++;
+    nbId++;
 }
 
 Point& Forme::getPoint()
@@ -48,7 +50,7 @@ int Forme::getCompteur()
 
 int Forme::prochainId()
 {
-    return nbFormes;
+    return nbId;
 }
 
 Forme::~Forme()

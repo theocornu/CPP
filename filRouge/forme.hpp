@@ -15,6 +15,7 @@ class Forme
   int w;
   int h;
   static int nbFormes;
+  static int nbId;
 
     public :
         Forme();
