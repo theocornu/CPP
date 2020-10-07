@@ -3,6 +3,9 @@
 
 #include "point.hpp"
 #include "forme.hpp"
+#include "cercle.hpp"
+#include "rectangle.hpp"
+#include "liste.hpp"
 #include "catch.hpp"
 
 TEST_CASE("Instanciation", "[Point]") {
@@ -27,7 +30,7 @@ TEST_CASE("Origine", "[Point]") {
   REQUIRE(Point::ORIGINE.getY() == 0);
 }
 
-
+/*
 TEST_CASE("Compteur", "[Forme]") {
    // Pour être correct, ce test doit etre le premier sur Forme
    REQUIRE(0 == Forme::prochainId());
@@ -79,20 +82,45 @@ TEST_CASE("Instanciation3", "[Forme]") {
   REQUIRE_FALSE (f2.getCouleur() == COULEURS::BLEU);
   REQUIRE_FALSE (f2.getCouleur() == COULEURS::ROUGE);
 }
+*/
 
 TEST_CASE("Cercle", "[Cercle]") {
    int compteur = Forme::prochainId();
    Cercle c1;
-   Cercle c2(...); 
+   Cercle c2(2, 2);
+   c2.setCouleur(COULEURS::ROUGE);
    
-   REQUIRE(c1.toString() == ".....");
-   REQUIRE(c2.toString() == ".....");
+   REQUIRE(c1.toString() == "CERCLE 0 0 0 BLEU 2 2");
+   REQUIRE(c2.toString() == "CERCLE 1 2 2 ROUGE 2 2");
 
-   c2.setRayon(...);
-   REQUIRE(c2.getRayon()   == "..."  );
-   REQUIRE(c2.toString()   == ".....");
-   REQUIRE(c2.getLargeur() == ".....");
-   REQUIRE(c2.getHauteur() == ".....");  
+   c2.setRayon(3);
+   REQUIRE(c2.getRayon()   == 3);
+   REQUIRE(c2.toString()   == "CERCLE 1 2 2 ROUGE 6 6");
+   REQUIRE(c2.getLargeur() == 6);
+   REQUIRE(c2.getHauteur() == 6);  
 
    REQUIRE(Forme::prochainId() == (compteur+2) ); 
+}
+
+TEST_CASE("Polymorphisme", "[Forme]") {
+   Forme * f1 = new Cercle;
+   Forme * f2 = new Rectangle;
+
+   REQUIRE(f1->toString() == "CERCLE 2 0 0 BLEU 2 2");
+   REQUIRE(f2->toString() == "RECTANGLE 3 0 0 BLEU 1 1");
+
+   delete f1;
+   delete f2;
+}
+
+TEST_CASE("Instanciation Groupe", "[Groupe]"){
+  Groupe g;
+
+  for (int i = 0; i < CAPACITE; i++){
+    REQUIRE(g.cercles[i] == 0);
+    REQUIRE(g.rectangles[i] == 0);
+  }
+
+  REQUIRE(g.getNbCercles() == 0);
+  REQUIRE(g.getNbRectangles() == 0);
 }

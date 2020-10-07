@@ -1,23 +1,30 @@
 #pragma once
 #include <string>
+#include "forme.hpp"
 
 class Cercle;
 class Rectangle;
 
 const int CAPACITE = 50;
 
-class Liste
+class Groupe : public Forme
 {
-    Cercle * cercles[CAPACITE];
-    int nb_c;
-    Rectangle * rectangles[CAPACITE];
-    int nb_r;
-    int compteur;
-
     public :
-        Liste();
+        Groupe();
+        int getNbCercles();
+        int getNbRectangles();
         int getCompteur();
         void ajouterCercle(Cercle * c);
         void ajouterRectangle(Rectangle * r);
+        void supprimerCercle();
+        void supprimerRectangle();
         std::string toString();
+
+        Cercle * cercles[CAPACITE];  
+        Rectangle * rectangles[CAPACITE];
+
+    private :
+        int nb_c;
+        int nb_r;
+        int compteur;
 };

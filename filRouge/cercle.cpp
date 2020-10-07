@@ -2,19 +2,29 @@
 #include <sstream>
 #include "cercle.hpp"
 
-Cercle::Cercle(int x, int y, int w, int h) : x(x), y(y), w(w), h(h), ordre(-1)
+Cercle::Cercle(int x, int y, int w, int h, COULEURS couleur) : Forme(Point(x, y), couleur, w, h)
 {
-
+    ordre = -1;
 } 
 
-Cercle::Cercle(int x, int y, int rayon) : x(x-rayon), y(y-rayon), w(2*rayon), h(2*rayon), ordre(-1)
-{
+Cercle::Cercle() : Cercle(Point::ORIGINE.getX(), Point::ORIGINE.getY(), 2, 2)
+{}
 
-} 
+Cercle::Cercle(int x, int y, int rayon, COULEURS couleur) : Cercle(x, y, 2*rayon, 2*rayon, couleur)
+{} 
+
+float Cercle::getRayon(){
+    return (float)w/2;
+}
+
+void Cercle::setRayon(int r){
+    w = h = 2*r;
+}
 
 std::string Cercle::toString()
 {
     std::ostringstream oss;
-    oss << "CERCLE " << x << " " << y << " " << w << " " << h;
+    oss << "CERCLE " << id << " " << point.getX() << " " << point.getY() 
+        << " " << getCouleur() << " " << w << " " << h;
     return oss.str();
 }

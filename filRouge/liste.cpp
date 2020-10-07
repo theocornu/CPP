@@ -3,16 +3,23 @@
 #include "rectangle.hpp"
 #include "cercle.hpp"
 
-Liste::Liste() : cercles(), nb_c(0), rectangles(), nb_r(0), compteur(0)
-{
+Groupe::Groupe() : Forme(), cercles(), rectangles(), nb_c(0), nb_r(0), compteur(0)
+{}
+
+int Groupe::getNbCercles(){
+    return nb_c;
 }
 
-int Liste::getCompteur()
+int Groupe::getNbRectangles(){
+    return nb_r;
+}
+
+int Groupe::getCompteur()
 {
     return compteur;
 }
 
-void Liste::ajouterCercle(Cercle * c)
+void Groupe::ajouterCercle(Cercle * c)
 {
     if (c && nb_c < CAPACITE && c->ordre == -1)
     {
@@ -23,7 +30,7 @@ void Liste::ajouterCercle(Cercle * c)
     }
 }
 
-void Liste::ajouterRectangle(Rectangle * r)
+void Groupe::ajouterRectangle(Rectangle * r)
 {
     if (r && nb_r < CAPACITE && r->ordre == -1)
     {
@@ -34,7 +41,7 @@ void Liste::ajouterRectangle(Rectangle * r)
     }
 }
 
-std::string Liste::toString()
+std::string Groupe::toString()
 {
     std::string chaine;
     int iCercle = 0, iRect = 0;

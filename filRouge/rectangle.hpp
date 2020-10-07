@@ -4,14 +4,11 @@
 
 class Rectangle : public Forme
 {
-    int x; // coordonnée x
-    int y; // coordonnée y
-    int w; // largeur du rectangle
-    int h; // hauteur du rectangle
+    friend class Groupe;
     int ordre; // index si le rectangle est dans une liste
-    friend class Liste;
 
     public :
-        Rectangle(int x, int y, int w, int h);
-        std::string toString();
+        Rectangle();
+        Rectangle(int x, int y, int w = 1, int h = 1, COULEURS couleur = COULEURS::BLEU);
+        virtual std::string toString();
 };
