@@ -1,4 +1,5 @@
 #include <fstream>
+#include <sstream>
 #include <iostream>
 
 #include "point.hpp"
@@ -142,4 +143,38 @@ TEST_CASE("Ajout/Suppression Groupe", "[Groupe]"){
 
   delete c;
   delete r;
+}
+
+TEST_CASE("Test Menu"){
+  Groupe g;
+
+  std::stringstream flux;
+  std::string line;
+  std::getline(std::cin, line);
+  flux << line;
+
+  std::string cmd;
+  flux >> cmd;
+  if (cmd == "afficher"){
+    std::cout << g.toString() << std::endl;
+  }
+  else if (cmd == "creer"){
+    std::string arg;
+    flux >> arg;
+    if (arg == "cercle"){
+      int x=-1, y=-1, w=-1, h=-1;
+      Cercle * c;
+      flux >> x >> y >> w >> h;
+      if(x != -1 && y != -1 && w != -1 && h != -1){
+        c = new Cercle(x, y, w, h);
+      }
+      else{
+        c = new Cercle;
+      }
+      g.ajouter(c);
+      std::cout << c->toString() << std::endl;
+    }
+    else if (arg == "rectangle"){
+    }
+  }
 }
