@@ -11,14 +11,14 @@ class Groupe : public Forme
 {
     public :
         Groupe();
-        int getNbCercles();
-        int getNbRectangles();
-        int getCompteur();
-        void ajouterCercle(Cercle * c);
-        void ajouterRectangle(Rectangle * r);
+        int getNbCercles()const;
+        int getNbRectangles()const;
+        int getCompteur()const;
+        void ajouter(Cercle * c);
+        void ajouter(Rectangle * r);
         void supprimerCercle();
         void supprimerRectangle();
-        std::string toString();
+        virtual std::string toString()const;
 
         Cercle * cercles[CAPACITE];  
         Rectangle * rectangles[CAPACITE];

@@ -123,4 +123,23 @@ TEST_CASE("Instanciation Groupe", "[Groupe]"){
 
   REQUIRE(g.getNbCercles() == 0);
   REQUIRE(g.getNbRectangles() == 0);
+  REQUIRE(g.getCompteur() == 0);
+
+  REQUIRE(g.toString() == "");
+}
+
+TEST_CASE("Ajout/Suppression Groupe", "[Groupe]"){
+  Groupe g;
+  Forme * c = new Cercle;
+  Forme * r = new Rectangle;
+
+  g.ajouter((Cercle*) c);
+  REQUIRE(g.getNbCercles() == 1);
+  REQUIRE(g.cercles[0]->getOrdre() == g.getCompteur() - 1);
+  g.ajouter((Rectangle*) r);
+  REQUIRE(g.getNbRectangles() == 1);
+  REQUIRE(g.rectangles[0]->getOrdre() == g.getCompteur() - 1);
+
+  delete c;
+  delete r;
 }

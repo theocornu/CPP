@@ -6,20 +6,20 @@
 Groupe::Groupe() : Forme(), cercles(), rectangles(), nb_c(0), nb_r(0), compteur(0)
 {}
 
-int Groupe::getNbCercles(){
+int Groupe::getNbCercles()const{
     return nb_c;
 }
 
-int Groupe::getNbRectangles(){
+int Groupe::getNbRectangles()const{
     return nb_r;
 }
 
-int Groupe::getCompteur()
+int Groupe::getCompteur()const
 {
     return compteur;
 }
 
-void Groupe::ajouterCercle(Cercle * c)
+void Groupe::ajouter(Cercle * c)
 {
     if (c && nb_c < CAPACITE && c->ordre == -1)
     {
@@ -30,7 +30,7 @@ void Groupe::ajouterCercle(Cercle * c)
     }
 }
 
-void Groupe::ajouterRectangle(Rectangle * r)
+void Groupe::ajouter(Rectangle * r)
 {
     if (r && nb_r < CAPACITE && r->ordre == -1)
     {
@@ -41,7 +41,19 @@ void Groupe::ajouterRectangle(Rectangle * r)
     }
 }
 
-std::string Groupe::toString()
+void Groupe::supprimerCercle(){
+    nb_c--;
+    compteur--;
+    cercles[nb_c]->ordre = -1;
+}
+
+void Groupe::supprimerRectangle(){
+    nb_r--;
+    compteur--;
+    rectangles[nb_r]->ordre = -1;
+}
+
+std::string Groupe::toString()const
 {
     std::string chaine;
     int iCercle = 0, iRect = 0;

@@ -10,8 +10,8 @@ class Point
 
         Point();
         Point(int x, int y);
-        int getX();
+        int getX()const;
         void setX(int x);
-        int getY();
+        int getY()const;
         void setY(int y);
 };

@@ -9,6 +9,7 @@ Forme::Forme(Point point, COULEURS couleur, int w, int h) :
 {
     nbFormes++;
     nbId++;
+    ordre = -1;
 }
 
 Forme::Forme() : Forme(Point::ORIGINE, COULEURS::BLEU, 1, 1)
@@ -17,7 +18,7 @@ Forme::Forme() : Forme(Point::ORIGINE, COULEURS::BLEU, 1, 1)
 Forme::Forme(Point point, int w, int h) : Forme(point, COULEURS::BLEU, w, h)
 {}
 
-int Forme::getId()
+int Forme::getId()const
 {
     return id;
 }
@@ -32,16 +33,19 @@ Point& Forme::getPoint()
     return point;
 }
 
-int Forme::getLargeur(){
+int Forme::getLargeur()const{
     return w;
 }
 
-int Forme::getHauteur(){
+int Forme::getHauteur()const{
     return h;
 }
 
+int Forme::getOrdre()const{
+    return ordre;
+}
 
-std::string Forme::getCouleur()
+std::string Forme::getCouleur()const
 {
     switch (couleur){
         case COULEURS::BLEU : 
