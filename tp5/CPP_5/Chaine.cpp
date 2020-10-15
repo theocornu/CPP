@@ -1,0 +1,91 @@
+#include "Chaine.hpp"
+#include <cstring>
+#include <cstdlib>
+
+
+Chaine::Chaine() : capacite(-1), tab(nullptr){}
+
+Chaine::Chaine(const char * inCS) : Chaine(){
+    if (inCS){
+        capacite = std::strlen(inCS);
+        tab = (char *) malloc((capacite+1)*sizeof(char));
+        std::strcpy(tab, inCS);
+    }    
+}
+
+Chaine::Chaine(const int inCapacite) : Chaine(){
+    if (inCapacite > -1){
+        capacite = inCapacite;
+        tab = (char *) malloc((capacite+1)*sizeof(char));
+        *tab = '\0';
+    }
+}
+
+Chaine::Chaine(const Chaine& copie) : Chaine(copie.getCapacite()){
+    strcpy(tab, copie.tab);
+    std::cerr << "Constructeur par copie appelé\n";
+}
+
+Chaine& Chaine::operator=(const Chaine& chaine){
+    if (this != &chaine){
+        capacite = chaine.getCapacite();
+        tab = (char *) std::realloc(tab, (capacite+1)*sizeof(char));
+        std::strcpy(tab, chaine.c_str());
+    }
+    return *this;
+}
+
+Chaine::~Chaine(){
+    std::free(tab);
+}
+
+int Chaine::getCapacite()const{
+    return capacite;
+}
+
+char * Chaine::c_str()const{
+    return tab;
+}
+
+char& Chaine::operator[](const int i){
+    return tab[i];
+}
+
+char& Chaine::operator[](const int i)const{
+    return tab[i];
+}
+
+void Chaine::afficher(std::ostream& flux)const{
+    flux << tab;
+}
+
+void afficherParValeur(const Chaine chaine){
+    chaine.afficher();
+}
+
+void afficherParReference(const Chaine& chaine){
+    chaine.afficher();
+}
+
+std::ostream& operator<<(std::ostream& flux, const Chaine& chaine){
+    //chaine.afficher(flux);
+    for (int i = 0; chaine[i] != '\0'; ++i){
+        flux << chaine[i] << std::endl;
+    }
+    return flux;
+}
+
+Chaine& operator+(const Chaine& c1, const Chaine& c2){
+    int capacite = c1.getCapacite() + c2.getCapacite();
+    char * cs = c1.c_str c2.c_str;
+    int i = 0;
+    while (c1[i] != 0){
+        cs[i] = c1[i];
+        ++i;
+    }
+    while (c2[i] != 0){
+        cs[i] = c2[i];
+        ++i;
+    }
+    return *cs;
+}
