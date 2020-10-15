@@ -35,6 +35,25 @@ Chaine& Chaine::operator=(const Chaine& chaine){
     return *this;
 }
 
+Chaine Chaine::operator+(const Chaine& c)const{
+    int nouvCapacite = capacite + c.getCapacite();
+    Chaine concat(nouvCapacite);
+    int i = 0, j = 0;
+    while (tab[i] != 0){
+        concat[j] = tab[i];
+        i++;
+        j++;
+    }
+    i = 0;
+    while (c[i] != 0){
+        concat[j] = c[i];
+        i++;
+        j++;
+    }
+    concat[j] = 0;
+    return concat;
+}
+
 Chaine::~Chaine(){
     std::free(tab);
 }
@@ -73,19 +92,4 @@ std::ostream& operator<<(std::ostream& flux, const Chaine& chaine){
         flux << chaine[i] << std::endl;
     }
     return flux;
-}
-
-Chaine& operator+(const Chaine& c1, const Chaine& c2){
-    int capacite = c1.getCapacite() + c2.getCapacite();
-    char * cs = c1.c_str c2.c_str;
-    int i = 0;
-    while (c1[i] != 0){
-        cs[i] = c1[i];
-        ++i;
-    }
-    while (c2[i] != 0){
-        cs[i] = c2[i];
-        ++i;
-    }
-    return *cs;
 }

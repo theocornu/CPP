@@ -14,6 +14,7 @@ class Chaine  {
         Chaine(const int inCapacite);
         Chaine(const Chaine& copie);
         Chaine& operator=(const Chaine& chaine);
+        Chaine operator+(const Chaine& c)const;
         ~Chaine();
         int getCapacite()const;
         char * c_str()const;
@@ -21,7 +22,6 @@ class Chaine  {
         char& operator[](const int i)const;
         void afficher(std::ostream& flux = std::cout)const;
         friend std::ostream& operator<<(std::ostream& flux, const Chaine& chaine);
-        friend Chaine& operator+(const Chaine& c1, const Chaine& c2);
 };
 
 void afficherParValeur(const Chaine chaine);
