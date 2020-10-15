@@ -38,19 +38,11 @@ Chaine& Chaine::operator=(const Chaine& chaine){
 Chaine Chaine::operator+(const Chaine& c)const{
     int nouvCapacite = capacite + c.getCapacite();
     Chaine concat(nouvCapacite);
-    int i = 0, j = 0;
-    while (tab[i] != 0){
-        concat[j] = tab[i];
-        i++;
-        j++;
-    }
-    i = 0;
-    while (c[i] != 0){
-        concat[j] = c[i];
-        i++;
-        j++;
-    }
-    concat[j] = 0;
+    char    * ptrConcat = concat.c_str(),
+            * ptrThis = tab;
+    while ((*ptrConcat++ = *ptrThis++));
+    ptrConcat--;
+    std::strcpy(ptrConcat, c.c_str());
     return concat;
 }
 
