@@ -78,14 +78,14 @@ TEST_CASE("operateur d'affectation") {
 }
 
 
-TEST_CASE("Surcharge <<") {
+/*TEST_CASE("Surcharge <<") {
 	const char * chaine = "une nouvelle surcharge";
 	Chaine s(chaine);
     std::stringstream ss;
     ss << s;  // :-)
 
     CHECK( ss.str() == chaine ); //  test de std::string, again :-))
-}
+}*/
 
 TEST_CASE("Operateur []"){
     const char * chaine = "abcde";
@@ -102,4 +102,13 @@ TEST_CASE("Operateur +"){
     Chaine c1(chaine1), c2(chaine2);
     Chaine c3 = c1 + c2;
     c3.afficher();
+}
+
+TEST_CASE("exceptions aux bornes") {
+  Chaine s(12);
+    
+  //REQUIRE_THROWS_AS( s[-1] == 0, Chaine::OutOfRangeException);
+  // OU
+  REQUIRE_THROWS_AS( s[-1] == 0, std::out_of_range&);
+  REQUIRE_THROWS_AS( s[12] == 0, std::bad_alloc&);  // :-)
 }

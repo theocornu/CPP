@@ -5,18 +5,24 @@
 
 Chaine::Chaine() : capacite(-1), tab(nullptr){}
 
-Chaine::Chaine(const char * inCS) : Chaine(){
-    if (inCS){
-        capacite = std::strlen(inCS);
-        tab = (char *) malloc((capacite+1)*sizeof(char));
-        std::strcpy(tab, inCS);
-    }    
+Chaine::Chaine(const char * inCS) : capacite(inCS < 0 ? -42 : inCS),
+tab(inCS < 0 ? ) {
+    /*if (inCS){
+        try {
+            capacite = std::strlen(inCS);
+            tab = new char[capacite+1];
+            std::strcpy(tab, inCS);
+        } catch (std::bad_alloc& e_tab) {
+            capacite = -1;
+            throw std::bad_alloc();
+        }
+    } */
 }
 
-Chaine::Chaine(const int inCapacite) : Chaine(){
-    if (inCapacite > -1){
-        capacite = inCapacite;
-        tab = (char *) malloc((capacite+1)*sizeof(char));
+Chaine::Chaine(const int inCapacite) :  capacite(inCapacite < 0 ? -42 : inCapacite),
+tab(inCapacite < 0 ? nullptr : new char[capacite+1]) {
+    if (inCapacite == -42) throw std::bad_alloc();
+    else {
         *tab = '\0';
     }
 }
@@ -28,9 +34,14 @@ Chaine::Chaine(const Chaine& copie) : Chaine(copie.getCapacite()){
 
 Chaine& Chaine::operator=(const Chaine& chaine){
     if (this != &chaine){
-        capacite = chaine.getCapacite();
-        tab = (char *) std::realloc(tab, (capacite+1)*sizeof(char));
-        std::strcpy(tab, chaine.c_str());
+        try {
+            capacite = chaine.getCapacite();
+            delete[] tab;
+            tab = new char[capacite+1];
+            strcpy(tab, chaine.c_str());
+        } catch (std::bad_alloc& e_tab) {
+            capacite = -1;
+        }
     }
     return *this;
 }
@@ -47,7 +58,7 @@ Chaine Chaine::operator+(const Chaine& c)const{
 }
 
 Chaine::~Chaine(){
-    std::free(tab);
+    delete[] tab;
 }
 
 int Chaine::getCapacite()const{
@@ -59,10 +70,14 @@ char * Chaine::c_str()const{
 }
 
 char& Chaine::operator[](const int i){
+    if (i < 0) throw std::out_of_range("Index invalide");
+    if (i >= capacite) throw std::bad_alloc();
     return tab[i];
 }
 
 char& Chaine::operator[](const int i)const{
+    if (i < 0) throw std::out_of_range("Index invalide");
+    if (i >= capacite) throw std::bad_alloc();
     return tab[i];
 }
 
