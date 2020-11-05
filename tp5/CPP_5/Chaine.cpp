@@ -2,7 +2,6 @@
 #include <cstring>
 #include <cstdlib>
 
-
 Chaine::Chaine() : capacite(-1), tab(nullptr){}
 
 Chaine::Chaine(const char * inCS) : capacite(inCS < 0 ? -42 : inCS),
