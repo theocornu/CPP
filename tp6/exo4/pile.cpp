@@ -1,10 +1,13 @@
 #include "pile.hpp"
 #include <iostream>
 
-Pile::Pile() : capacite(CAPACITE_DEFAUT), taille(0), contenu(new int[capacite]){
+Pile::Pile() : capacite(CAPACITE_DEFAUT), taille(0), 
+contenu(new int[CAPACITE_DEFAUT]){
 }
 
 Pile::Pile(const int inCapacite) : capacite(inCapacite < 1 ? -1 : inCapacite), taille(0), contenu(inCapacite < 1 ? nullptr : new int[inCapacite]) {
+    if (contenu == nullptr)
+        throw std::invalid_argument("ERREUR constructeur : capacité invalide.");
 }
 
 Pile::~Pile() {
